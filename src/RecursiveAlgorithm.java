@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class RecursiveAlgorithm {
 
     //1. 문자열 길이 계산
@@ -47,4 +49,41 @@ public class RecursiveAlgorithm {
         }
     }
 
+    // 1부터 n까지의 합
+    public int sum(int n) {
+        if (n == 0)
+            return n;
+        else
+            return n + sum(n-1);
+    }
+
+    // combination
+    // n : 원소들의 총 갯수,
+    // picked : 지금까지 고른 원소들의 번호
+    // toPick : 더 고를 원소의 수
+    public void combination(int n, List<Integer> picked, int toPick) {
+        // base case
+        if (toPick == 0)
+            printPicked(picked);
+        else {
+            int smallest = picked.isEmpty() ? 0 : picked.get(picked.size() - 1) + 1;
+
+            for(int i = smallest ; i < n ; i++) {
+                picked.add(i);
+                combination(n, picked, toPick-1);
+                picked.remove(picked.size() - 1);
+            }
+        }
+    }
+
+    public void printPicked(List<Integer> picked) {
+        StringBuilder sb = new StringBuilder();
+
+        for(int i=0 ; i < picked.size() ; i++) {
+            sb.append(picked.get(i));
+            if(i != picked.size() -1)
+                sb.append(", ");
+        }
+        System.out.println(sb.toString());
+    }
 }

@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class AlgorithmMain {
     public static void main(String[] args) {
         RecursiveAlgorithm tester = new RecursiveAlgorithm();
@@ -23,5 +26,12 @@ public class AlgorithmMain {
         int[] arr = {1,2,3,4,5};
         int sumResult = tester.getArrayValueSum(arr, arr.length);
         System.out.println(sumResult);
+
+        System.out.println("\n6. 1부터 n까지의 합-------------");
+        //6. 1부터 n까지의 합
+        System.out.println(tester.sum(10));
+
+        //7. 콤비네이션
+        tester.combination(9, new ArrayList<Integer>(), 4);
     }
 }
