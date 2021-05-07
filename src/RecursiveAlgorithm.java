@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Stack;
 
 public class RecursiveAlgorithm {
 
@@ -61,17 +62,17 @@ public class RecursiveAlgorithm {
     // n : 원소들의 총 갯수,
     // picked : 지금까지 고른 원소들의 번호
     // toPick : 더 고를 원소의 수
-    public void combination(int n, List<Integer> picked, int toPick) {
+    public void combination(int n, Stack<Integer> picked, int toPick) {
         // base case
         if (toPick == 0)
             printPicked(picked);
         else {
-            int smallest = picked.isEmpty() ? 0 : picked.get(picked.size() - 1) + 1;
+            int smallest = picked.isEmpty() ? 0 : picked.peek() + 1;
 
             for(int i = smallest ; i < n ; i++) {
-                picked.add(i);
+                picked.push(i);
                 combination(n, picked, toPick-1);
-                picked.remove(picked.size() - 1);
+                picked.pop();
             }
         }
     }
@@ -85,5 +86,19 @@ public class RecursiveAlgorithm {
                 sb.append(", ");
         }
         System.out.println(sb.toString());
+    }
+
+    public void permutation(int n, Stack<Integer> picked, int toPick) {
+            if (toPick == 0) {
+                printPicked(picked);
+            } else {
+                for(int i=1 ; i<=n ; i++) {
+                    if(!picked.contains(i)) {
+                        picked.push(i);
+                        permutation(n, picked, toPick - 1 );
+                        picked.pop();
+                    }
+                }
+            }
     }
 }
