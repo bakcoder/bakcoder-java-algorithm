@@ -10,7 +10,7 @@ public class ValidParentheses {
         System.out.println(validParentheses.mySolution2(s));
     }
 
-    public boolean mySolution(String s) {
+    public boolean mySolution(String s) { // 잘못된 풀이
         HashMap<Character, Integer> map = new HashMap<>();
 
         char[] charArr = s.toCharArray();
